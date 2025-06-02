@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<!-- Visualization & Content Choices: 
+- Main Goal/KPIs: Goal: Inform. Viz: Large, bold text for immediate impact. Interaction: None. Justification: Quick grasp of core targets. Method: HTML/CSS.
+- Phases of the Plan: Goal: Organize (Process/Timeline). Viz: Accordion/expandable sections for each phase and for each strategic action within. Interaction: Click to expand/collapse. Justification: Manages content density, allows focused exploration of detailed steps and responsibilities. Method: HTML/CSS with Vanilla JS.
+- Success Metrics: Goal: Inform. Viz: List of key metrics. Interaction: None. Justification: Provides a clear checklist for evaluation. Method: HTML/CSS.
+- Resources Needed: Goal: Inform. Viz: List. Interaction: None. Justification: Concise overview. Method: HTML/CSS.
+- Considerations and Risks: Goal: Inform. Viz: List. Interaction: None. Justification: Highlights crucial factors. Method: HTML/CSS.
+-->
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Ação: Recuperação do Investimento - Conexão Terapêutica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+        }
+        .text-shadow {
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .accordion-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #E0F2F7;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            color: #0077B6;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-header:hover {
+            background-color: #CCEEF7;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            padding: 0 1rem;
+        }
+        .accordion-content.active {
+            max-height: 9999px; /* Increased to accommodate content */
+            padding: 1rem;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-icon.rotate {
+            transform: rotate(90deg);
+        }
+        .sub-accordion-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background-color: #F0F8FF;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            color: #03045E;
+            margin-top: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        .sub-accordion-header:hover {
+            background-color: #EBF8FF;
+        }
+        .sub-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            padding: 0 0.75rem;
+        }
+        .sub-accordion-content.active {
+            max-height: 9999px; /* Increased to accommodate content */
+            padding: 0.75rem;
+        }
+        .kpi-value {
+            color: #0077B6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-[#03045E]">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8">
+        
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-black text-[#0077B6] text-shadow">Plano de Ação: Recuperação do Investimento Inicial</h1>
+            <p class="text-lg md:text-xl text-gray-700 mt-3 max-w-3xl mx-auto">Plataforma "Conexão Terapêutica" - Meta: R$ 10.000 no primeiro mês</p>
+        </header>
+
+        <main class="space-y-16">
+
+            <section id="overview" class="card">
+                <h2 class="text-3xl font-bold text-[#0077B6] mb-4">Visão Geral e Premissas Chave</h2>
+                <p class="text-gray-700 leading-relaxed mb-6">Este plano detalha as estratégias para gerar R$ 10.000 em receita bruta no primeiro mês após o lançamento da plataforma "Conexão Terapêutica", focando em ações de alto impacto no pré-lançamento e no período inicial de operação.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-500 uppercase tracking-wider">Investimento a Recuperar</h3>
+                        <p class="text-4xl font-extrabold kpi-value mt-2">R$ 10.000</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-500 uppercase tracking-wider">Preço Plano Premium</h3>
+                        <p class="text-4xl font-extrabold kpi-value mt-2">R$ 39,90/mês</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-500 uppercase tracking-wider">Assinantes Necessários</h3>
+                        <p class="text-4xl font-extrabold kpi-value mt-2">~251</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="phases">
+                <h2 class="text-3xl font-bold text-center text-[#0077B6] mb-8">Fases do Plano de Ação</h2>
+                <div class="space-y-6">
+                    <div class="card">
+                        <div class="accordion-header" data-target="phase1-content">
+                            <span>Fase 1: Pré-Lançamento (4-8 Semanas Antes)</span>
+                            <span class="accordion-icon">></span>
+                        </div>
+                        <div id="phase1-content" class="accordion-content">
+                            <p class="text-gray-700 mb-4">Objetivo: Construir uma base de leads altamente qualificados e gerar forte antecipação.</p>
+                            <div class="space-y-4">
+                                <div class="sub-accordion-header" data-target="action1-1">
+                                    <span>1. Marketing de Conteúdo para Geração de Leads</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action1-1" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Criar e distribuir materiais ricos (e-books, guias, checklists) sobre temas de alto interesse para pais de crianças em equoterapia (ex: "5 Sinais de Progresso na Equoterapia").</p>
+                                    <p class="text-gray-600">Responsável: Equipe de Conteúdo</p>
+                                    <p class="text-gray-600">Prazo: -8 a -1 semanas</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action1-2">
+                                    <span>2. Criação de Landing Pages Otimizadas</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action1-2" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Desenvolver landing pages específicas para cada material rico, focadas na captura de e-mails. Oferecer inscrição para uma "Lista VIP de Lançamento" com benefícios exclusivos.</p>
+                                    <p class="text-gray-600">Responsável: Equipe de Marketing</p>
+                                    <p class="text-gray-600">Prazo: -6 a -2 semanas</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action1-3">
+                                    <span>3. Construção e Nutrição da Lista de E-mail</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action1-3" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Enviar e-mails periódicos para a lista de leads com conteúdo de valor, prévias da plataforma, depoimentos e informações sobre o lançamento.</p>
+                                    <p class="text-gray-600">Responsável: Equipe de Marketing</p>
+                                    <p class="text-gray-600">Prazo: -6 semanas até o lançamento</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action1-4">
+                                    <span>4. Mobilização de Parcerias Estratégicas</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action1-4" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Apresentar o plano de lançamento e a oferta especial para centros de equoterapia, terapeutas e influenciadores. Definir como eles promoverão a plataforma para suas audiências.</p>
+                                    <p class="text-gray-600">Responsável: Gestor de Parcerias</p>
+                                    <p class="text-gray-600">Prazo: -8 a -1 semanas</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action1-5">
+                                    <span>5. Campanha de Teaser e Antecipação</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action1-5" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Utilizar redes sociais e outros canais para criar expectativa, mostrando "por trás das cenas", revelando funcionalidades chave e os benefícios da plataforma. Contagem regressiva.</p>
+                                    <p class="text-gray-600">Responsável: Equipe de Marketing</p>
+                                    <p class="text-gray-600">Prazo: -2 semanas até o lançamento</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action1-6">
+                                    <span>6. Definição da Oferta de Lançamento</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action1-6" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Estruturar uma oferta "irresistível" para os primeiros assinantes (ex: desconto nos primeiros X meses, bônus exclusivos, acesso vitalício a algum recurso).</p>
+                                    <p class="text-gray-600">Responsável: Liderança/Marketing</p>
+                                    <p class="text-gray-600">Prazo: -4 semanas</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="accordion-header" data-target="phase2-content">
+                            <span>Fase 2: Lançamento e Primeiro Mês de Operação</span>
+                            <span class="accordion-icon">></span>
+                        </div>
+                        <div id="phase2-content" class="accordion-content">
+                            <p class="text-gray-700 mb-4">Objetivo: Converter o máximo de leads em assinantes pagos e garantir uma excelente primeira experiência.</p>
+                            <div class="space-y-4">
+                                <div class="sub-accordion-header" data-target="action2-1">
+                                    <span>1. Execução da Oferta de Lançamento</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action2-1" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Comunicar amplamente a oferta especial de lançamento em todos os canais, com senso de urgência (tempo limitado ou número limitado de vagas na oferta).</p>
+                                    <p class="text-gray-600">Responsável: Equipe de Marketing</p>
+                                    <p class="text-gray-600">Prazo: Dia do Lançamento (D) a D+30</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action2-2">
+                                    <span>2. Campanha de E-mail Marketing Intensiva</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action2-2" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Sequência de e-mails para a lista de leads focada na conversão: apresentação da oferta, benefícios do plano premium, depoimentos, quebra de objeções, lembretes de fim da oferta.</p>
+                                    <p class="text-gray-600">Responsável: Equipe de Marketing</p>
+                                    <p class="text-gray-600">Prazo: D a D+15</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action2-3">
+                                    <span>3. Ativação Imediata dos Parceiros</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action2-3" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Coordenar com os parceiros para que iniciem a divulgação da plataforma e da oferta de lançamento para suas audiências conforme acordado.</p>
+                                    <p class="text-gray-600">Responsável: Gestor de Parcerias</p>
+                                    <p class="text-gray-600">Prazo: D a D+7</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action2-4">
+                                    <span>4. Publicidade Paga Direcionada (se houver orçamento)</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action2-4" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Lançar campanhas no Google Ads e/ou Facebook/Instagram Ads direcionadas ao público-alvo com a mensagem da oferta de lançamento.</p>
+                                    <p class="text-gray-600">Responsável: Equipe de Marketing</p>
+                                    <p class="text-gray-600">Prazo: D a D+30</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action2-5">
+                                    <span>5. Onboarding e Engajamento dos Primeiros Usuários</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action2-5" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Garantir um processo de cadastro e primeiros passos simples e acolhedor. Incentivar a participação na comunidade e o uso das ferramentas desde o início. Oferecer suporte ágil.</p>
+                                    <p class="text-gray-600">Responsável: Equipe de Produto/Suporte</p>
+                                    <p class="text-gray-600">Prazo: D a D+30</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action2-6">
+                                    <span>6. Promoção de Conteúdo Premium Avulso (se aplicável)</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action2-6" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Se houver workshops ou materiais digitais prontos e de alto valor, promovê-los como uma opção adicional de receita, possivelmente com desconto para os primeiros assinantes da plataforma.</p>
+                                    <p class="text-gray-600">Responsável: Equipe de Conteúdo/Marketing</p>
+                                    <p class="text-gray-600">Prazo: D+7 a D+30</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action2-7">
+                                    <span>7. Monitoramento Contínuo de Métricas</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action2-7" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Acompanhar diariamente o número de visitantes, cadastros gratuitos, assinaturas pagas, receita gerada e fontes de tráfego.</p>
+                                    <p class="text-gray-600">Responsável: Liderança/Marketing</p>
+                                    <p class="text-gray-600">Prazo: D a D+30</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="accordion-header" data-target="phase3-content">
+                            <span>Fase 3: Pós-Primeiro Mês (Análise e Otimização Contínua)</span>
+                            <span class="accordion-icon">></span>
+                        </div>
+                        <div id="phase3-content" class="accordion-content">
+                            <p class="text-gray-700 mb-4">Objetivo: Avaliar os resultados, coletar feedback e otimizar as estratégias para crescimento sustentável.</p>
+                            <div class="space-y-4">
+                                <div class="sub-accordion-header" data-target="action3-1">
+                                    <span>1. Análise Detalhada dos Resultados</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action3-1" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Comparar a receita gerada, o número de assinantes e o CAC com as metas. Identificar o que funcionou melhor e o que precisa ser ajustado.</p>
+                                    <p class="text-gray-600">Responsável: Liderança/Marketing</p>
+                                    <p class="text-gray-600">Prazo: D+30 a D+45</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action3-2">
+                                    <span>2. Coleta de Feedback dos Primeiros Usuários</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action3-2" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Aplicar pesquisas de satisfação, realizar entrevistas com assinantes para entender suas percepções, necessidades e sugestões de melhoria.</p>
+                                    <p class="text-gray-600">Responsável: Equipe de Produto/Suporte</p>
+                                    <p class="text-gray-600">Prazo: D+30 a D+60</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action3-3">
+                                    <span>3. Otimização das Estratégias de Aquisição</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action3-3" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Com base nos dados e feedback, refinar as campanhas de marketing, as ofertas e o funil de conversão.</p>
+                                    <p class="text-gray-600">Responsável: Equipe de Marketing</p>
+                                    <p class="text-gray-600">Prazo: Contínuo</p>
+                                </div>
+
+                                <div class="sub-accordion-header" data-target="action3-4">
+                                    <span>4. Foco na Retenção de Assinantes</span>
+                                    <span class="accordion-icon">></span>
+                                </div>
+                                <div id="action3-4" class="sub-accordion-content">
+                                    <p class="text-gray-600">Detalhes: Desenvolver estratégias para manter os assinantes engajados e satisfeitos (conteúdo novo, melhorias na plataforma, suporte contínuo) para maximizar o LTV.</p>
+                                    <p class="text-gray-600">Responsável: Equipe de Produto/Comunidade</p>
+                                    <p class="text-gray-600">Prazo: Contínuo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="metrics-resources-risks" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h2 class="text-2xl font-bold text-[#0077B6] mb-4">Métricas de Sucesso (Primeiro Mês)</h2>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li>Receita Bruta Gerada: <span class="font-bold kpi-value">Meta = R$ 10.000</span></li>
+                        <li>Número de Assinantes Pagos: <span class="font-bold kpi-value">Meta = ~251</span></li>
+                        <li>Custo de Aquisição de Cliente (CAC): Monitorar e otimizar</li>
+                        <li>Taxa de Conversão (Visitante → Lead)</li>
+                        <li>Taxa de Conversão (Lead → Assinante Pago)</li>
+                        <li>Fontes de Tráfego e Conversão: Identificar os canais mais eficazes</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h2 class="text-2xl font-bold text-[#0077B6] mb-4">Recursos Necessários e Cronograma</h2>
+                    <h3 class="text-xl font-bold text-[#03045E] mb-2">Recursos (Conceitual)</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 mb-4">
+                        <li>Plataforma MVP funcional</li>
+                        <li>Conteúdo inicial de qualidade</li>
+                        <li>Materiais de marketing (criativos, e-mails, posts)</li>
+                        <li>Ferramentas (e-mail marketing, analytics, pagamento)</li>
+                        <li>Equipe dedicada (marketing, conteúdo, parcerias, suporte)</li>
+                        <li>Orçamento para publicidade paga (se aplicável)</li>
+                    </ul>
+                    <h3 class="text-xl font-bold text-[#03045E] mb-2">Cronograma Resumido</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Semanas -8 a -1: Fase 1 (Pré-Lançamento)</li>
+                        <li>Dia D (Lançamento): Início da Fase 2</li>
+                        <li>Semanas D+1 a D+4: Execução da Fase 2</li>
+                        <li>Semana D+5: Início da Fase 3 (Análise)</li>
+                    </ul>
+                </div>
+                <div class="card md:col-span-2">
+                    <h2 class="text-2xl font-bold text-[#0077B6] mb-4">Considerações e Riscos</h2>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li>**Dependência do Pré-Lançamento:** Uma lista de leads pequena ou pouco engajada pode dificultar o atingimento da meta.</li>
+                        <li>**Taxas de Conversão Variáveis:** As taxas reais podem diferir das estimadas; otimização contínua é crucial.</li>
+                        <li>**Entrega de Valor Imediato:** A plataforma deve justificar a assinatura desde o primeiro acesso.</li>
+                        <li>**Concorrência Indireta:** É vital destacar o diferencial da "Conexão Terapêutica" em um mercado com diversas fontes de informação.</li>
+                        <li>**Esforço Concentrado:** A recuperação rápida do investimento exige um esforço de marketing e vendas muito coordenado.</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-16 pt-8 border-t border-gray-200">
+            <p class="text-gray-700 font-semibold">Este plano de ação detalhado visa garantir a sustentabilidade e o impacto da "Conexão Terapêutica" desde o primeiro mês.</p>
+            <p class="text-sm text-gray-500 mt-2">© 2025 Conexão Terapêutica. Todos os direitos reservados.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = document.getElementById(header.dataset.target);
+                const icon = header.querySelector('.accordion-icon');
+                
+                content.classList.toggle('active');
+                icon.classList.toggle('rotate');
+            });
+        });
+
+        document.querySelectorAll('.sub-accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = document.getElementById(header.dataset.target);
+                const icon = header.querySelector('.accordion-icon');
+                
+                content.classList.toggle('active');
+                icon.classList.toggle('rotate');
+            });
+        });
+    </script>
+</body>
+</html>
